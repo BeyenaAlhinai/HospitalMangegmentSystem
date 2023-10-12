@@ -1,0 +1,45 @@
+<!-- patient.component.html -->
+<div style="background-image: url('assets/66.jpg'); background-size: cover; background-position: center; color: #ffffff; padding: 20px; background-repeat: no-repeat; height: 100%; min-height: 100vh; display: flex; justify-content: center; font-family: 'Arial', sans-serif;">
+
+  <div class="Doctor">
+  
+    <form [formGroup]="doctorForm" class="Doctor-form">
+      
+        <h1 style="color: black; text-align: center;">Doctor Information</h1><br>
+
+        <label for="doctorId" style="color: blue; font-size: 17px;">Doctor ID:</label>
+        <input type="number" id="doctorId" class="form-control" style="width: 400px; height:35px;" formControlName="id" required>
+        
+        <label for="doctorName" style="color: blue; font-size: 17px;">Name:</label>
+        <input type="text" id="doctorName" class="form-control" style="width: 400px; height:35px;" formControlName="name" required>
+    
+        <label for="gender" style="color: blue; font-size: 17px;">Gender:</label>
+        <input type="text" id="gender" class="form-control" style="width: 400px; height:35px;" formControlName="gender" required>
+    
+        <label for="specialization" style="color: blue; font-size: 17px;">Specialization:</label>
+        <input type="text" id="specialization" class="form-control" style="width: 400px; height:35px;" formControlName="specialization" required>
+   
+        <label for="contactNumber" style="color: blue; font-size: 17px;">Contact Number:</label>
+        <input type="text" id="contactNumber" class="form-control" style="width: 400px; height:35px;" formControlName="contactNumber" required>
+         <br>
+        <button type="button" class="btn btn-primary" (click)="selectedDoctorIndex !== null ? updateDoctor() : addDoctor()">
+          {{ selectedDoctorIndex !== null ? 'Update Doctor' : 'Add Doctor' }}
+        </button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-secondary" (click)="clearForm()">Clear</button>
+
+      <div class="messages">
+        <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      </div>
+    </form> <br>
+
+    <h2 style="color: red;">Doctors List</h2>
+    <ul>
+      <li *ngFor="let doctor of doctors; let i = index" class="patient-item">
+        {{ doctor.DoctorId }} - {{ doctor.DoctorName }} - {{ doctor.Gender }} - {{ doctor.Specilization }} - {{ doctor.ContactNumber }}
+        <button type="button" class="btn edit-btn" (click)="editDoctor(i)">Edit</button>
+        <button type="button" class="btn delete-btn" (click)="deleteDoctor(i)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>
